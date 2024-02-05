@@ -1,27 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+body {
+  background-color: hsl(0, 0%, 94%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.card {
+  font-family: 'Poppins', sans-serif;
+  background-color: hsl(0, 0%, 100%);
+}
+
+.input-section {
+  border-bottom: 1px solid hsl(0, 0%, 86%);
+}
+
+h1 {
+  font-size: 10px;
+  font-weight: 800;
+  color: hsl(0, 1%, 44%);
+  letter-spacing: 3px;
+  margin-bottom: 3px;
+}
+
+input {
+  border: 1px solid hsl(0, 0%, 86%);
+  font-size: 20px;
+  color: hsl(0, 0%, 8%);
+  font-weight: 800;
+  width: 100px;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid hsl(259, 100%, 65%);
+}
+
+.error-msg {
+  font-weight: 400;
+  font-style: italic;
+  font-size: 9px;
+  margin-top: 4px;
+  margin-right: 5px;
+  color: hsl(0, 100%, 67%);
+}
+
+.input-section {
+  position: relative;
+}
+
+.get-btn {
+  position: absolute;
+  bottom: -20%;
+  right: 40%;
+  background-color: hsl(259, 100%, 65%);
+  border-radius: 30px;
+  padding: 15px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.get-btn:hover {
+  opacity: 0.9;
+}
+
+.get-btn:active {
+  background-color: hsl(0, 0%, 8%);
+}
+
+img {
+  width: 15px;
+}
+
+.result-section {
+  font-weight: 800;
+  font-style: italic;
+  font-size: 55px;
+}
+
+.num {
+  color: hsl(243, 98%, 49%);
+}
+
+/* For mobile devices style */
+@media (min-width: 320px) {
+  input {
+    width: 80px;
+    font-size: 14px;
+  }
+
+  .get-btn {
+    right: 40%;
+  }
+
+  .result-section {
+    font-size: 50px;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* For tablets */
+@media (min-width: 767px) {
+  .card {
+    padding: 2rem 4rem;
+  }
+
+  .get-btn {
+    bottom: -35%;
+    right: 0%;
+    border-radius: 60px;
+    padding: 20px;
+  }
+
+  img {
+    width: 30px;
+  }
+
+  .result-section {
+    font-size: 60px;
+  }
+}
+
+/* For laptops */
+@media (min-width: 1279px) {
+  .card {
+    padding: 2rem 4rem;
+  }
+
+  .get-btn {
+    bottom: -35%;
+    right: 0%;
+    border-radius: 60px;
+    padding: 25px;
+  }
+
+  img {
+    width: 35px;
+  }
+
+  input {
+    width: 145px;
+    font-size: 18px;
+  }
+
+  h1 {
+    font-size: 10px;
+  }
+
+  .result-section {
+    font-size: 75px;
+  }
+}
+
+/* for large pcs */
+@media(min-width: 1439px) {
+  body {
+    padding: 2.5rem 4rem;
+  }
+
+  .card {
+    padding: 2rem 4rem;
+    border-bottom-right-radius: 150px;
+  }
+
+  input {
+    width: 150px;
+    font-size: 30px;
+  }
+
+  h1 {
+    font-size: 14px;
+  }
+
+  .get-btn {
+    bottom: -50%;
+    padding: 25px;
+  }
+
+  img {
+    width: 60px;
+  }
+
+  .result-section {
+    font-size: 60px;
+  }
+
+  .result-section {
+    font-size: 100px;
+  }
 }
