@@ -1,7 +1,7 @@
 import moment from "moment";
 import React, { useState } from "react";
 
-const Form = () => {
+const Form = ({ sendData }) => {
      const [inputValue, setInputValue] = useState({
           day: "",
           month: "",
@@ -23,7 +23,9 @@ const Form = () => {
      const [validDate, setValidDate] = useState(true);
 
      const currentDate = new Date();
-     const currentYear = (currentDate).getFullYear();
+     let currentYear = (currentDate).getFullYear();
+     let currentMonth = currentDate.getMonth() + 1;
+     let currentDays = currentDate.getDate();
 
      //To change the state of input
      const handleChange = (evt) => {
@@ -63,12 +65,27 @@ const Form = () => {
 
      //Check the date is valid or not using moment js and provide the result
      const isValidDate = () => {
-          const { day, month, year } = inputValue;
-          const dateStr = `${day}/${month}/${year}`;
+          const { day: birthDate, month: birthMonth, year: birthYear } = inputValue;
+          const dateStr = `${birthDate}/${birthMonth}/${birthYear}`;
 
           //This sets valid date
-          if (day > 0 && day <= 31 && month > 0 && month <= 12 && year > 0 && year <= currentYear) {
-               setValidDate(moment(dateStr, "DD/MM/YYYY", true).isValid());
+          if (birthDate > 0 && birthDate <= 31 && birthMonth > 0 && birthMonth <= 12 && birthYear > 0 && birthYear <= currentYear) {
+               const isValidDate = moment(dateStr, "DD/MM/YYYY", true).isValid();
+               setValidDate(isValidDate);
+
+               //This gives proper age if date is valid
+               if (isValidDate) {
+                    let ageYear = currentYear - birthYear + (currentMonth >= birthMonth ? 0 : -1);
+                    let ageMonth = currentMonth - birthMonth + (currentMonth >= birthMonth ? 0 : 12) + (currentDays >= birthDate ? 0 : -1);
+                    let ageDays = currentDays - birthDate + (currentDays >= birthDate ? 0 : new Date(currentYear, currentMonth - 1, 0).getDate());
+
+                    //This result goes to Card.js parent component
+                    sendData({
+                         ageDate: ageDays,
+                         ageMonth: ageMonth,
+                         ageYear: ageYear
+                    });
+               }
           } else {
                setValidDate(true);
           }
@@ -99,7 +116,7 @@ const Form = () => {
                     <div className="position: relative">
                          <h1 className={inputEmptyCheck.year && checkValidData.year && validDate ? "color: hsl(0, 1%, 44%)" : "text-red-400"}>YEAR</h1>
                          <input className={inputEmptyCheck.year && checkValidData.year && validDate ? "border: 1px solid hsl(0, 0%, 86%)" : "border-red-400"} onChange={handleChange} value={inputValue.year} type="text" name="year" placeholder="YYYY" autoComplete="off" />
-                         <p className={checkValidData.year ? "hidden" : "error-msg position: absolute"}>Must be in past</p>
+                         <p className={checkValidData.year ? "hidden" : "error-msg position: absolute"}>Must be a valid year</p>
                          <p className={inputEmptyCheck.year ? "hidden" : "error-msg position: absolute"}>This field is required</p>
                     </div>
                     <button type="submit" className="get-btn"><img src="/assets/images/icon-arrow.svg" alt="icon" /></button>

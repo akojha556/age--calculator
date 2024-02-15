@@ -3,7 +3,7 @@ import React from "react";
 const Output = (props) => {
      return (
           <div className="flex">
-               <div className="num mr-2">{props.result}</div>
+               <div className="num mr-1">{props.result}</div>
                <p>{props.lableName}</p>
           </div>
      );
