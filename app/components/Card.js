@@ -16,7 +16,7 @@ const Card = () => {
      }
      
      return (
-          <div className="card px-16 py-4 rounded-xl rounded-br-[12rem] min-h-[60vh] xl:min-h-[80vh]">
+          <div className="card px-8 py-4 rounded-xl rounded-br-[12rem]">
                <Form sendData={receiveData} />
                <Result ageData={ageData} />
           </div>

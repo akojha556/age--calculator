@@ -52,6 +52,7 @@ input:focus {
 
 .input-section {
   position: relative;
+  padding-bottom: 48px;
 }
 
 .get-btn {
@@ -90,16 +91,16 @@ img {
 /* For mobile devices style */
 @media (min-width: 320px) {
   input {
-    width: 80px;
-    font-size: 14px;
+    width: 90px;
+    font-size: 18px;
   }
 
   .get-btn {
-    right: 40%;
+    right: 43%;
   }
 
   .result-section {
-    font-size: 40px;
+    font-size: 54px;
   }
 }
 
